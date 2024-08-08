@@ -755,7 +755,7 @@ class IPAdapterAdvanced:
                 "attn_mask": attn_mask if not isinstance(attn_mask, list) else attn_mask[i],
                 "unfold_batch": self.unfold_batch,
                 "embeds_scaling": embeds_scaling,
-                "insightface": insightface if insightface is not None else ipadapter['insightface']['model'] if isinstance(ipadapter, dict) else None,
+                "insightface": insightface if insightface is not None else ipadapter['insightface']['model'] if isinstance(ipadapter, dict) and 'insightface' in ipadapter else None,
                 "layer_weights": layer_weights,
                 "encode_batch_size": encode_batch_size,
                 "style_boost": style_boost,
