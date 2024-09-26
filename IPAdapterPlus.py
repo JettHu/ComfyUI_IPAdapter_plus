@@ -60,6 +60,10 @@ class IPAdapter(nn.Module):
         self.cross_attention_dim = 1280 if (self.is_plus and self.is_sdxl and not self.is_faceid) or self.is_portrait_unnorm else self.output_cross_attention_dim
         self.clip_extra_context_tokens = 16 if (self.is_plus and not self.is_faceid) or self.is_portrait or self.is_portrait_unnorm else 4
 
+        if "latents" in ipadapter_model["image_proj"]:
+            # get the number of tokens from the latents shape
+            self.clip_extra_context_tokens = ipadapter_model['image_proj']['latents'].shape[-2]
+
         self.clip_embeddings_dim = -1 # img_cond_embeds.shape[-1]
         if self.is_faceid and not self.is_portrait_unnorm:
             if self.is_plus:
