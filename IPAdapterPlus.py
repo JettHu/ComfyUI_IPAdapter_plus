@@ -7,7 +7,7 @@ import copy
 import comfy.model_management as model_management
 from node_helpers import conditioning_set_values
 from comfy.clip_vision import load as load_clip_vision
-from comfy.model_patcher import ModelPatcher    # jadd
+from comfy.model_patcher import ModelPatcher
 from comfy.sd import load_lora_for_models
 import comfy.utils
 
@@ -48,8 +48,7 @@ WEIGHT_TYPES = ["linear", "ease in", "ease out", 'ease in-out', 'reverse in-out'
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """
 class IPAdapter(nn.Module):
-    # def __init__(self, ipadapter_model, cross_attention_dim=1024, output_cross_attention_dim=1024, clip_embeddings_dim=1024, clip_extra_context_tokens=4, is_sdxl=False, is_plus=False, is_full=False, is_faceid=False, is_portrait_unnorm=False, is_kwai_kolors=False, encoder_hid_proj=None, weight_kolors=1.0):
-    def __init__(self, ipadapter_model):    # jmodify
+    def __init__(self, ipadapter_model):
         super().__init__()
         self.is_full = "proj.3.weight" in ipadapter_model["image_proj"]
         self.is_portrait_unnorm = "portraitunnorm" in ipadapter_model
